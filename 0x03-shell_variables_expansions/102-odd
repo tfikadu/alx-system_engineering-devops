@@ -1,2 +1,2 @@
 #!/bin/bash
-printf-- | cut -f1
+echo paste-- | cut -f1
