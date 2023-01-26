@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script displays the content of the current directory in list format
+# Only displays the part of the name after the first dash
+# This script is displaying "Best School" 10 times
+for i in *
+do
+    echo "$i" | cut -d'-' -f2
+done
