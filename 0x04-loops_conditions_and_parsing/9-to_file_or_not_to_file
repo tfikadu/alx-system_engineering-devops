@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
-# This script displays information about the file `school`
-
-if [ -e "school" ]
+# This script gives information about the bestschool file
+FILE=bestschool
+if [ -e "$FILE" ]
 then
-  echo "school file exists"
-  if [ -s "school" ]
-  then
-    echo "school file is not empty"
-  else
-    echo "school file is empty"
-  fi
+    echo "$FILE file exists"
 
-  if [ -f "school" ]
-  then
-    echo "school is a regular file"
-  fi
+    if [ -s "$FILE" ]
+    then
+	echo "$FILE file is not empty"
+    else
+	echo "$FILE file is empty"
+    fi
+
+    if [ -f "$FILE" ]
+    then
+	echo "$FILE is a regular file"
+    fi
 else
-  echo "school file does not exist"
+    echo "$FILE file does not exist"
 fi
