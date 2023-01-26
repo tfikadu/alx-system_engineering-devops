@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Display "Best School" 10 times
+
+loops=10
+until [ $loops == 0 ]
+do
+	echo "Best School"
+	((loops--))
+done
