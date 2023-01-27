@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script stop a process using command stop
+stop "$(ps -x | pgrep -f beyond)"
