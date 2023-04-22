@@ -7,7 +7,7 @@ file_line { 'aaaaa':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
   after  => 'listen 80 default_server;',
-  line   => 'rewrite ^/redirect_me https://www.youtube.com/channel/UCkZJN2thnGnBR0j-TR23IXA;',
+  line   => 'rewrite ^/redirect_me https://www.youtube.com/channel/UCkZJN2thnGnBR0j-TR23IXA permanent;',
 }
 
 file { '/var/www/html/index.html':
@@ -18,3 +18,5 @@ service { 'nginx':
   ensure  => running,
   require => Package['nginx'],
 }
+
+

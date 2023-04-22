@@ -1,24 +1,14 @@
 #!/usr/bin/env bash
-# Installs nginx web server
+# Configure your Nginx server to have a custom 404 page that contains the
+# string Ceci n'est pas une page
+sudo apt-get update -y
+sudo apt-get install -y nginx
 
-apt-get update
-apt-get install -y nginx
-service nginx start
-mkdir /etc/nginx/html
-echo "Hollo School" > /etc/nginx/html/index.html
-echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
-echo "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 https://youtube.com/channel/UCkZJN2thnGnBR0j-TR23IXA;
-    }
-    error_page 404 /404.html;
-    location = /404.html{
-        root /etc/nginx/html;
-        internal;
-    }
-}" > /etc/nginx/sites-available/default
-service nginx restart
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://twitter.com/Fikadu2Tessema  permanent;" /etc/nginx/sites-enabled/default
+
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/page_error_404.html
+sudo sed -i '37i error_page 404 /page_error_404.html;\nlocation = /page_error_404.html {\nroot /usr/share/nginx/html; \ninternal;\n}\n' /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
+

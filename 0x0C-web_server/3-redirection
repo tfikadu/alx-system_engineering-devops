@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
-# Installs nginx web server
+# Configure your Nginx server so that /redirect_me is redirecting
+# to another page.
+sudo apt-get update -y
+sudo apt-get install -y nginx
 
-apt-get update
-apt-get install -y nginx
-echo "Hello School" > /etc/nginx/html/index.html
-echo "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html;
-    location /redirect_me {
-        return 301 https://https://youtube.com/channel/UCkZJN2thnGnBR0j-TR23IXA;
-    }
-}" > /etc/nginx/sites-available/default
-service nginx restart
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo sed -i "/listen 80 default_server;/a rewrite ^/redirect_me https://twitter.com/Fikadu2Tessema permanent;" /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
+
